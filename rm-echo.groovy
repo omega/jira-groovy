@@ -13,7 +13,7 @@ team_rooms = [
     "Navigation":"@navigation",
     "Startsiden":"#drift",
     "News":"@news",
-    "Video":"@video"
+    "Video":"@video",
 ] // XXX: this is not pretty to hardcode either
 
 Issue issue = issue
@@ -24,7 +24,7 @@ ComponentManager componentManager = ComponentManager.getInstance()
 CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
-team = issue.getCustomFieldValue(customFieldSrc)'
+team = issue.getCustomFieldValue(customFieldSrc)
 room = team_rooms.get(team.toString())
 
 netcat = new Socket("noops1.startsiden.no", 54321)
