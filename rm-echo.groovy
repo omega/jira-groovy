@@ -18,7 +18,7 @@ CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = "${issue.getCustomFieldValue(customFieldSrc)}"
-log.error "Team: '${team}'"
+log.error "Team: '${team}'" + team.getClass().getName()
 if (team == "Startsiden") {
     log.error "They are equal"
 } else {
