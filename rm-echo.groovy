@@ -19,8 +19,8 @@ CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc)
 log.error "Team: '${team}'"
-room = team_rooms.get("${team}")
-log.error "room: ${room}"
+room = team_rooms.get("Startsiden")
+log.error "room: ${room} "
 
 netcat = new Socket("noops1.startsiden.no", 54321)
 netcat.withStreams { input, output ->
