@@ -22,7 +22,7 @@ log.error "Team: '${team}'"
 if (team == "Startsiden") {
     log.error "They are equal"
 } else {
-    log.error "No they are not";
+    log.error "No they are not: ${team} Startsiden";
 }
 room = team_rooms.get("Startsiden")
 log.error "room: ${room} "
