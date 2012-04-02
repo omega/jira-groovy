@@ -7,7 +7,7 @@ import com.atlassian.jira.issue.fields.CustomField
 
 log = Category.getInstance("no.startsiden.no.jira.groovy.rmecho")
 def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
-def team_rooms = ["Startsiden":"#drift"] // XXX: this is not pretty to hardcode either
+team_rooms = ["Startsiden":"#drift"] // XXX: this is not pretty to hardcode either
 
 Issue issue = issue
 action = transientVars.get("descriptor").getAction(transientVars.get("actionId"))
@@ -24,7 +24,7 @@ if (team == "Startsiden") {
 } else {
     log.error "No they are not: ${team} Startsiden";
 }
-room = team_rooms.get(team)
+room = team_rooms.get(team.toString())
 log.error "room: ${room} "
 room = team_rooms.get("Startsiden");
 log.error "room again: ${room}"
