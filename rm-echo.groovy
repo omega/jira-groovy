@@ -7,7 +7,14 @@ import com.atlassian.jira.issue.fields.CustomField
 
 log = Category.getInstance("no.startsiden.no.jira.groovy.rmecho")
 def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
-team_rooms = ["Startsiden":"#drift"] // XXX: this is not pretty to hardcode either
+team_rooms = [
+    "Fotball":"@fotball",
+    "MeeTV":"@tvguide",
+    "Navigation":"@navigation",
+    "Startsiden":"#drift",
+    "News":"@news",
+    "Video":"@video",
+] // XXX: this is not pretty to hardcode either
 
 Issue issue = issue
 action = transientVars.get("descriptor").getAction(transientVars.get("actionId"))
@@ -17,10 +24,8 @@ ComponentManager componentManager = ComponentManager.getInstance()
 CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
-team = issue.getCustomFieldValue(customFieldSrc)
-log.error "Team: '${team}'" + team.getClass().getName()
+team = issue.getCustomFieldValue(customFieldSrc)'
 room = team_rooms.get(team.toString())
-log.error "room: ${room} "
 
 netcat = new Socket("noops1.startsiden.no", 54321)
 netcat.withStreams { input, output ->
