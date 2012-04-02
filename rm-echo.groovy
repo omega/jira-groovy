@@ -17,7 +17,7 @@ ComponentManager componentManager = ComponentManager.getInstance()
 CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
-team = "${issue.getCustomFieldValue(customFieldSrc)}"
+team = issue.getCustomFieldValue(customFieldSrc)
 log.error "Team: '${team}'" + team.getClass().getName()
 room = team_rooms.get(team.toString())
 log.error "room: ${room} "
