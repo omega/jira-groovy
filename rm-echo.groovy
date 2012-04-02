@@ -19,15 +19,8 @@ CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = "${issue.getCustomFieldValue(customFieldSrc)}"
 log.error "Team: '${team}'" + team.getClass().getName()
-if (team == "Startsiden") {
-    log.error "They are equal"
-} else {
-    log.error "No they are not: ${team} Startsiden";
-}
 room = team_rooms.get(team.toString())
 log.error "room: ${room} "
-room = team_rooms.get("Startsiden");
-log.error "room again: ${room}"
 
 netcat = new Socket("noops1.startsiden.no", 54321)
 netcat.withStreams { input, output ->
