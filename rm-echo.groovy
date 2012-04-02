@@ -1,8 +1,11 @@
+import org.apache.log4j.Category
+
 import com.atlassian.jira.issue.Issue
 import com.atlassian.jira.issue.CustomFieldManager
 import com.atlassian.jira.ComponentManager
 import com.atlassian.jira.issue.fields.CustomField
 
+log = Category.getInstance("no.startsiden.no.jira.groovy.rmecho")
 def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
 def team_rooms = ["Startsiden":"#drift"] // XXX: this is not pretty to hardcode either
 
@@ -15,7 +18,7 @@ CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc)
-log.info team
+log.error team
 room = team_rooms[team]
 log.info room
 
