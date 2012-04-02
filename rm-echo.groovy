@@ -13,7 +13,7 @@ team_rooms = [
     "Navigation":"@navigation",
     "Startsiden":"#drift",
     "News":"@news",
-    "Video":"@video",
+    "Video":"@video"
 ] // XXX: this is not pretty to hardcode either
 
 Issue issue = issue
