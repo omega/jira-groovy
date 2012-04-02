@@ -24,7 +24,7 @@ if (team == "Startsiden") {
 } else {
     log.error "No they are not: ${team} Startsiden";
 }
-room = team_rooms.get("Startsiden")
+room = team_rooms.get(team)
 log.error "room: ${room} "
 
 netcat = new Socket("noops1.startsiden.no", 54321)
