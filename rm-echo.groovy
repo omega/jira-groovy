@@ -19,6 +19,11 @@ CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc)
 log.error "Team: '${team}'"
+if (team == "Startsiden") {
+    log.error "They are equal"
+} else {
+    log.error "No they are not";
+}
 room = team_rooms.get("Startsiden")
 log.error "room: ${room} "
 
