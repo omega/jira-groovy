@@ -31,6 +31,8 @@ log.error("team: ${team} room: ${room}")
 
 netcat = new Socket("noops1.startsiden.no", 54321)
 netcat.withStreams { input, output ->
-  output << "${room},#drift ${issue.key}: ${issue.summary} (${team}) ${action.name} Next up: ${issue.getAssigneeUser().getDisplayName()}\n"
+  msg = "${issue.key}: ${issue.summary} ${action.name} Next up: ${issue.getAssigneeUser().getDisplayName()}\n"
+  output << "${room} ${msg}"
+  output << "#drfit ${team} > ${msg}"
   buffer = input.newReader().readLine()
 }
