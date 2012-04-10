@@ -11,7 +11,7 @@ team_rooms = [
     "Fotball":"@fotball",
     "MeeTV":"@tvguide",
     "Navigation":"@navigation",
-    "Startsiden":"#drift",
+    "Startsiden":"@startsiden",
     "News":"@news",
     "Video":"@video",
 ] // XXX: this is not pretty to hardcode either
@@ -24,11 +24,13 @@ ComponentManager componentManager = ComponentManager.getInstance()
 CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
-team = issue.getCustomFieldValue(customFieldSrc)
-room = team_rooms.get(team.toString())
+team = issue.getCustomFieldValue(customFieldSrc).toString()
+room = team_rooms.get(team)
+
+log.info("team: ${team} room: ${room}")
 
 netcat = new Socket("noops1.startsiden.no", 54321)
 netcat.withStreams { input, output ->
-  output << "${room} ${issue.key} ${issue.summary} ${action.name} ${issue.getAssigneeUser().getDisplayName()}\n"
+  output << "${room},#drift ${issue.key}: ${issue.summary} (${team}) ${action.name} Next up: ${issue.getAssigneeUser().getDisplayName()}\n"
   buffer = input.newReader().readLine()
 }
