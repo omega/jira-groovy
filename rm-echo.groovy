@@ -8,7 +8,7 @@ import com.atlassian.jira.issue.fields.CustomField
 log = Category.getInstance("no.startsiden.no.jira.groovy.rmecho")
 def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
 team_rooms = [
-    "Fotball":"@fotball",
+    "Football":"@fotball",
     "MeeTV":"@tvguide",
     "Navigation":"@navigation",
     "Startsiden":"@startsiden",
@@ -25,7 +25,7 @@ CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc).toString()
-room = team_rooms.get(team.toString())
+room = team_rooms.get(team)
 
 log.error("team: ${team} room: ${room}")
 
