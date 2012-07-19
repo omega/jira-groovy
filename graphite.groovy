@@ -14,14 +14,19 @@ Issue issue = issue
 
 action = transientVars.get("actionId")
 
+stages = [
+    "41": "prod"
+]
+
 
 ComponentManager componentManager = ComponentManager.getInstance()
 CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc).toString().toLowerCase()
+stage = stages.get("${action}")
 
-log.error("team: ${team}, action: ${action}")
+log.error("team: ${team}, action: ${action} stage: ${stage}")
 try {
     netcat = new Socket("192.168.30.23", 2003)
     netcat.withStreams { input, output ->
