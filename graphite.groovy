@@ -15,8 +15,8 @@ Issue issue = issue
 action = transientVars.get("actionId")
 
 stages = [
-    "41": "prod",
-    "21": "kua",
+    "a41": "prod",
+    "a21": "kua",
 ]
 
 
@@ -25,7 +25,7 @@ CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc).toString().toLowerCase()
-stage = stages.get("${action}")
+stage = stages.get("a${action}")
 
 log.error("team: ${team}, action: ${action} stage: ${stage}")
 try {
