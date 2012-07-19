@@ -12,7 +12,7 @@ long unixTime = System.currentTimeMillis() / 1000L;
 
 Issue issue = issue
 
-action = transientVars.get("descriptor").getAction(transientVars.get("actionId"))
+action = transientVars.get("actionId")
 
 
 ComponentManager componentManager = ComponentManager.getInstance()
