@@ -15,6 +15,7 @@ team_rooms = [
     "Startsiden":"@startsiden",
     "News":"@news",
     "Video":"@video",
+    "Test":"@test",
 ] // XXX: this is not pretty to hardcode either
 
 Issue issue = issue
