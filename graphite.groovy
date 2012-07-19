@@ -7,6 +7,10 @@ import com.atlassian.jira.issue.fields.CustomField
 
 log = Category.getInstance("no.startsiden.no.jira.groovy.graphite")
 def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
+stages = [
+    41:"prod",
+    21:"kua",
+]
 
 long unixTime = System.currentTimeMillis() / 1000L;
 
@@ -14,10 +18,6 @@ Issue issue = issue
 
 action = transientVars.get("actionId")
 
-stages = [
-    "a41": "prod",
-    "a21": "kua",
-]
 
 
 ComponentManager componentManager = ComponentManager.getInstance()
@@ -25,7 +25,7 @@ CustomFieldManager customFieldManager = componentManager.getCustomFieldManager()
 CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc).toString().toLowerCase()
-stage = stages.get("a${action}")
+stage = stages.get(action)
 
 log.error("team: ${team}, action: ${action} stage: ${stage}")
 try {
