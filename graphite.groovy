@@ -5,8 +5,8 @@ import com.atlassian.jira.issue.CustomFieldManager
 import com.atlassian.jira.ComponentManager
 import com.atlassian.jira.issue.fields.CustomField
 
-
 log = Category.getInstance("no.startsiden.no.jira.groovy.graphite")
+long unixTime = System.currentTimeMillis() / 1000L;
 
 Issue issue = issue
 
@@ -23,7 +23,7 @@ log.error("team: ${team}")
 try {
     netcat = new Socket("192.168.30.23", 2003)
     netcat.withStreams { input, output ->
-        msg = "events.deploy.prod.${team}.${issue.key}\n"
+        msg = "events.deploy.prod.${team}.${issue.key} 1 ${unixTime}\n"
         output << "${msg}"
         netcat.close()
     }
