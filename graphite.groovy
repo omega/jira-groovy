@@ -6,6 +6,8 @@ import com.atlassian.jira.ComponentManager
 import com.atlassian.jira.issue.fields.CustomField
 
 log = Category.getInstance("no.startsiden.no.jira.groovy.graphite")
+def team_field = "customfield_10520" // XXX: This is not pretty to hardcode?
+
 long unixTime = System.currentTimeMillis() / 1000L;
 
 Issue issue = issue
