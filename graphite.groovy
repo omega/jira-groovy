@@ -30,6 +30,6 @@ try {
         netcat.close()
     }
 } catch (ex) {
-    log.error("Exception doing netcat to dev-rolf");
+    log.error("Exception doing netcat to dev-rolf: ${ex}");
 }
 
