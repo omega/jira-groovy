@@ -15,7 +15,8 @@ Issue issue = issue
 action = transientVars.get("actionId")
 
 stages = [
-    "41": "prod"
+    "41": "prod",
+    "21": "kua",
 ]
 
 
