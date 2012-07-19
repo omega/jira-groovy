@@ -21,7 +21,7 @@ CustomField customFieldSrc = customFieldManager.getCustomFieldObject(team_field)
 
 team = issue.getCustomFieldValue(customFieldSrc).toString().toLowerCase()
 
-log.error("team: ${team}")
+log.error("team: ${team}, action: ${action}")
 try {
     netcat = new Socket("192.168.30.23", 2003)
     netcat.withStreams { input, output ->
