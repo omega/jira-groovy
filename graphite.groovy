@@ -47,6 +47,7 @@ for (host in hosts)
         netcat = new Socket(host, 2003)
         netcat.withStreams { input, output ->
             msg = "events.deploy.${stage}.${team}.${issue.key} 1 ${unixTime}\n"
+            output << "${msg}"
             netcat.close()
         }
     } catch (ex) {
