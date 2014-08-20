@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat
 import org.apache.log4j.Category
 
 import com.atlassian.jira.issue.Issue
@@ -21,6 +22,7 @@ stages = [
 long unixTime = System.currentTimeMillis() / 1000L; // / # Vim fuckups!
 
 def now = new Date(System.currentTimeMillis())
+df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
 
 Issue issue = issue
 
@@ -58,7 +60,7 @@ for (host in logstash_hosts)
     try {
         nc = new Socket(host, logstash_port)
         nc.withStreams { input, output ->
-            msg = "${now} DEPLOY ${stage} ${team} ${issue.key}"
+            msg = "${df.format(now)} event:deploy environment:${stage} team:${team} jira:${issue.key}"
             output << msg
             nc.close()
         }
