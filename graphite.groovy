@@ -9,6 +9,9 @@ log = Category.getInstance("no.startsiden.no.jira.groovy.graphite")
 // XXX: These thingd are hard-coded here, because I haven't found a good way to get
 // config from anywhere for script runner scripts
 def hosts = ["192.168.30.23", "192.168.30.113"]
+def logstash_hosts = ["192.168.30.113"]
+def logstash_port = 10514
+
 def team_field = "customfield_10520"
 stages = [
     41:"prod",
@@ -48,3 +51,14 @@ for (host in hosts)
         log.error("Exception doing netcat to ${host}: ${ex}");
     }
 
+for (host in logstash_hosts)
+    try {
+        nc = new Socket(host, logstash_port)
+        nc.withStreams { input, output ->
+            msg = "${now} DEPLOY ${stage} ${team} ${issue.key}"
+            output << msg
+            nc.close()
+        }
+    } catch (ex) {
+        println "error communicating with ${host}: ${ex}"
+    }
