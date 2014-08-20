@@ -32,13 +32,14 @@ team = issue.getCustomFieldValue(customFieldSrc).toString()
 room = team_rooms.get(team)
 
 log.error("team: ${team} room: ${room}")
-try {
-    netcat = new Socket("noops1.startsiden.no", 54321)
-    netcat.withStreams { input, output ->
-        msg = "'${issue.key}: ${issue.summary}' ${action.name} Next up: ${issue.getAssigneeUser().getDisplayName()} ${url}\n"
-        output << "${room},#drift ${msg}"
-        netcat.close()
+if (room)
+    try {
+        netcat = new Socket("noops1.startsiden.no", 54321)
+        netcat.withStreams { input, output ->
+            msg = "'${issue.key}: ${issue.summary}' ${action.name} Next up: ${issue.getAssigneeUser().getDisplayName()} ${url}\n"
+            output << "${room},#drift ${msg}"
+            netcat.close()
+        }
+    } catch (ex) {
+        log.error("Exception doing netcat to noops1: ${ex}");
     }
-} catch (ex) {
-    log.error("Exception doing netcat to noops1");
-}
