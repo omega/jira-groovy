@@ -20,6 +20,8 @@ stages = [
 
 long unixTime = System.currentTimeMillis() / 1000L; // / # Vim fuckups!
 
+def now = new Date(System.currentTimeMillis())
+
 Issue issue = issue
 
 action = transientVars.get("actionId")
