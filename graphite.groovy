@@ -32,16 +32,35 @@ try {
     netcat = new Socket("192.168.30.23", 2003)
     netcat.withStreams { input, output ->
         msg = "events.deploy.${stage}.${team} 1 ${unixTime}\n"
+log.error("msg: ${msg}")
         output << "${msg}"
         netcat.close()
     }
     netcat = new Socket("192.168.30.23", 2003)
     netcat.withStreams { input, output ->
         msg = "events.deploy.${stage}.${team}.${issue.key} 1 ${unixTime}\n"
-        output << "${msg}"
+//        output << "${msg}"
         netcat.close()
     }
 } catch (ex) {
     log.error("Exception doing netcat to dev-rolf: ${ex}");
+}
+
+try {
+    netcat = new Socket("192.168.30.113", 2003)
+    netcat.withStreams { input, output ->
+        msg = "events.deploy.${stage}.${team} 1 ${unixTime}\n"
+log.error("msg: ${msg}")
+        output << "${msg}"
+        netcat.close()
+    }
+    netcat = new Socket("192.168.30.113", 2003)
+    netcat.withStreams { input, output ->
+        msg = "events.deploy.${stage}.${team}.${issue.key} 1 ${unixTime}\n"
+//        output << "${msg}"
+        netcat.close()
+    }
+} catch (ex) {
+    log.error("Exception doing netcat to rd03: ${ex}");
 }
 
