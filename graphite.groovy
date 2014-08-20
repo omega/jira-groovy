@@ -60,5 +60,5 @@ for (host in logstash_hosts)
             nc.close()
         }
     } catch (ex) {
-        println "error communicating with ${host}: ${ex}"
+        log.error("error communicating with ${host}: ${ex}")
     }
